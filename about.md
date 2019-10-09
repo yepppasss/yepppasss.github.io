@@ -26,6 +26,4 @@ titles:
 key: page-about
 ---
 
-## Sobre B2Admin ...
-
-Esta página es fruto de un proyecto personal en el cual se registrarán entradas con documentación variada sobre la administracin de sistemas. 
+En esta página se registrarán entradas con documentación variada sobre la administracin de sistemas. 
