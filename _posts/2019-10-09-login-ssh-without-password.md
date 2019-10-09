@@ -32,3 +32,10 @@ ssh-copy-id mooc@192.168.2.131
 {:refdef: style="text-align: center;"}
 ![SSH](/assets/images/2019-10-09-login-ssh-without-password_02.png)
 {: refdef}
+
+Una vez conectado, podemos verificar, que se ha copiado la *public key*. 
+Para ello, revisaremos el contenido del archivo **.ssh/authorized_keys** dentro del servidor remoto.
+
+```bash
+cat .ssh/authorized_keys
+```
