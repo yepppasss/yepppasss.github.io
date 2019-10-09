@@ -11,8 +11,8 @@ En esta entrada se mostrará un ejemplo de como configurar un inicio de sesión 
 
 Para mostrar el ejemplo, utilizaremos el siguiente entorno:
 
-* **Servidor local:** 192.168.2.157 (Ubuntu)
-* **Servidor remoto:** 192.168.2.131 (Ubuntu)
+* **Servidor local:** 192.168.2.157
+* **Servidor remoto:** 192.168.2.131
 
 El primer paso será acceder al **servidor local**.
 Una vez dentro del servidor, ejecutamos el siguiente comando:
