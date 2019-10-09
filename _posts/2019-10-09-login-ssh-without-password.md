@@ -24,4 +24,4 @@ ssh-keygen -t rsa -b 2048
 
 Test
 
-[Page layout](https://tianqi.name/jekyll-TeXt-theme/samples.html#page-layout) 
+2
