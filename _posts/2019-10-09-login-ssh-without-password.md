@@ -20,8 +20,17 @@ Una vez dentro del servidor, ejecutamos el siguiente comando:
 ```bash
 ssh-keygen -t rsa -b 2048
 ```
-11
 
 {:refdef: style="text-align: center;"}
 ![SSH](/assets/images/2019-10-09-login-ssh-without-password_01.png)
+{: refdef}
+
+El siguiente paso, será copiar la clave en el **servidor remoto**:
+
+```bash
+ssh-copy-id mooc@192.168.2.131
+```
+
+{:refdef: style="text-align: center;"}
+![SSH](/assets/images/2019-10-09-login-ssh-without-password_02.png)
 {: refdef}
