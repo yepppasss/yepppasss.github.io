@@ -21,9 +21,7 @@ Una vez dentro del servidor, ejecutamos el siguiente comando:
 ssh-keygen -t rsa -b 2048
 ```
 
-{:refdef: style="text-align: center;"}
 ![SSH](/assets/images/2019-10-09-login-ssh-without-password_01.png)
-{: refdef}
 
 El siguiente paso, será realizar una copia de la llave en el **servidor remoto**, mediante el siguiente comando:
 
