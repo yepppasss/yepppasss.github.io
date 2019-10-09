@@ -20,3 +20,8 @@ Una vez dentro del servidor, ejecutamos el siguiente comando:
 ```bash
 ssh-keygen -t rsa -b 2048
 ```
+<img class="image image--lg" src="/assets/images/2019-10-09-login-ssh-without-password_01.png"/>
+
+Test
+
+[Page layout](https://tianqi.name/jekyll-TeXt-theme/samples.html#page-layout) 
