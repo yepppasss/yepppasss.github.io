@@ -29,9 +29,15 @@ El siguiente paso, será realizar una copia de la llave en el **servidor remoto*
 ssh-copy-id mooc@192.168.2.131
 ```
 
-{:refdef: style="text-align: center;"}
 ![SSH](/assets/images/2019-10-09-login-ssh-without-password_02.png)
-{: refdef}
+
+A continuación, conectamos por SSH al servidor remoto:
+
+```bash
+ssh mooc@192.168.2.131
+```
+
+![SSH](/assets/images/2019-10-09-login-ssh-without-password_03.png)
 
 Una vez conectado, podemos verificar, que se ha copiado la *public key*. 
 Para ello, revisaremos el contenido del archivo **.ssh/authorized_keys** dentro del servidor remoto.
@@ -39,3 +45,15 @@ Para ello, revisaremos el contenido del archivo **.ssh/authorized_keys** dentro 
 ```bash
 cat .ssh/authorized_keys
 ```
+
+![SSH](/assets/images/2019-10-09-login-ssh-without-password_04.png)
+
+Volvemos al servidor local y revisamos la *public key*.
+
+```bash
+cat .ssh/id_rsa.pub
+```
+
+![SSH](/assets/images/2019-10-09-login-ssh-without-password_05.png)
+
+Tras comprobar que tiene la misma key, ya podemos conectar al servidor remoto sin uso de contraseña.
