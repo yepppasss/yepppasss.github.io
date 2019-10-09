@@ -24,7 +24,9 @@ ssh-keygen -t rsa -b 2048
 
 Test
 
-8
+![SSH](/assets/images/2019-10-09-login-ssh-without-password_01.png){: .align-center}
+
+9
 
 {:refdef: style="text-align: center;"}
 ![SSH](/assets/images/2019-10-09-login-ssh-without-password_01.png)
