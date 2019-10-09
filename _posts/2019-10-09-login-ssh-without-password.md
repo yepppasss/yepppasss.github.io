@@ -20,13 +20,15 @@ Una vez dentro del servidor, ejecutamos el siguiente comando:
 ```bash
 ssh-keygen -t rsa -b 2048
 ```
+<p align="center"">
 <img src="/assets/images/2019-10-09-login-ssh-without-password_01.png"/> 
+</p>
 
 Test
 
 ![SSH](/assets/images/2019-10-09-login-ssh-without-password_01.png){: .align-center}
 
-9
+10
 
 {:refdef: style="text-align: center;"}
 ![SSH](/assets/images/2019-10-09-login-ssh-without-password_01.png)
