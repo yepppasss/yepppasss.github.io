@@ -20,8 +20,8 @@ Una vez dentro del servidor, ejecutamos el siguiente comando:
 ```bash
 ssh-keygen -t rsa -b 2048
 ```
-<img class="image image--xl" src="/assets/images/2019-10-09-login-ssh-without-password_01.png"/>
+<img class="image" src="/assets/images/2019-10-09-login-ssh-without-password_01.png"/>
 
 Test
 
-2
+3
