@@ -9,8 +9,8 @@ En esta entrada se mostrará un ejemplo de como configurar un inicio de sesión 
 
 Para mostrar el ejemplo, utilizaremos el siguiente entorno:
 
-* **Servidor local:** 192.168.2.157
-* **Servidor remoto:** 192.168.2.131
+* **Servidor local:** 172.16.102.137
+* **Servidor remoto:** 172.16.102.138
 
 El primer paso será acceder al **servidor local**.
 Una vez dentro del servidor, ejecutamos el siguiente comando:
@@ -19,7 +19,7 @@ Una vez dentro del servidor, ejecutamos el siguiente comando:
 ssh-keygen -t rsa -b 2048
 ```
 
-![SSH](/assets/images/2019-10-09-login-ssh-without-password_01.png)
+![SSH](/assets/images/2019-11-30-login-ssh-without-password_01.png)
 
 El siguiente paso, será realizar una copia de la llave en el **servidor remoto**, mediante el siguiente comando:
 
