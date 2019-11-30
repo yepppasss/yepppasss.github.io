@@ -32,10 +32,10 @@ ssh-copy-id linux@172.16.102.138
 A continuación, conectamos por SSH al servidor remoto:
 
 ```bash
-ssh mooc@192.168.2.131
+ssh linux@172.16.102.138
 ```
 
-![SSH](/assets/images/2019-10-09-login-ssh-without-password_03.png)
+![SSH](/assets/images/2019-11-30-login-ssh-without-password_03.png)
 
 Una vez conectado, podemos verificar, que se ha copiado la *public key*. 
 Para ello, revisaremos el contenido del archivo **.ssh/authorized_keys** dentro del servidor remoto.
