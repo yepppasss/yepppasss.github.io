@@ -44,7 +44,7 @@ Para ello, revisaremos el contenido del archivo **.ssh/authorized_keys** dentro 
 cat .ssh/authorized_keys
 ```
 
-![SSH](/assets/images/2019-10-09-login-ssh-without-password_04.png)
+![SSH](/assets/images/2019-11-30-login-ssh-without-password_04.png)
 
 Volvemos al servidor local y revisamos la *public key*.
 
@@ -52,6 +52,6 @@ Volvemos al servidor local y revisamos la *public key*.
 cat .ssh/id_rsa.pub
 ```
 
-![SSH](/assets/images/2019-10-09-login-ssh-without-password_05.png)
+![SSH](/assets/images/2019-11-30-login-ssh-without-password_05.png)
 
 Tras comprobar que tiene la misma key, ya podemos conectar al servidor remoto sin uso de contraseña.
