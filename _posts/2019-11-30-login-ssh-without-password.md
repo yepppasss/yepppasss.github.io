@@ -27,7 +27,7 @@ El siguiente paso, será realizar una copia de la llave en el **servidor remoto*
 ssh-copy-id linux@172.16.102.138
 ```
 
-![SSH](/assets/images/2019-10-09-login-ssh-without-password_02.png)
+![SSH](/assets/images/2019-11-30-login-ssh-without-password_02.png)
 
 A continuación, conectamos por SSH al servidor remoto:
 
