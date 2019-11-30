@@ -5,8 +5,6 @@ aside:
   toc: true
 ---
 
-SSH (Secure SHELL) es un protocolo de red de código abierto más confiable, que se utiliza para iniciar sesión en servidores remotos para la ejecución de comandos y programas.
-
 En esta entrada se mostrará un ejemplo de como configurar un inicio de sesión de conexión SSH en un servidor Linux sin contraseña.
 
 Para mostrar el ejemplo, utilizaremos el siguiente entorno:
