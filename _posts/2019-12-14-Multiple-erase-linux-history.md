@@ -8,7 +8,7 @@ aside:
 Para poder realizar un borrado de un conjunto de línea, podemos hacer uso de un *script* que permite realizar el borrado de múltiples líneas de registro.
 Veamos el siguiente ejemplo de **history**:
 
-```ssh
+```bash
   174  sudo -i
   175  jobs
   176  sudo -i
