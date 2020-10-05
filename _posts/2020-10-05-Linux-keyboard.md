@@ -1,13 +1,17 @@
 ---
 layout: article
-title: Linux - Configuración de teclado
-tags: Linux
+title: Configuración de teclado en consola de Linux
+tags: Linux Keyboard
 ---
 
-If you see this page, that means you have setup your site. enjoy! 
+La configuración regional del sistema especifica la configuración de idioma de los servicios del sistema y las interfaces de usuario. La configuración de distribución del teclado controla la distribución utilizada en la consola de texto y las interfaces gráficas de usuario.
 
-You may want to [config the site](https://tianqi.name/jekyll-TeXt-theme/docs/en/configuration) or [writing a post](https://tianqi.name/jekyll-TeXt-theme/docs/en/writing-posts) next. Please feel free to [create an issue](https://github.com/kitian616/jekyll-TeXt-theme/issues) or [send me email](mailto:kitian616@outlook.com) if you have any questions.
+Estos ajustes se pueden realizar utilizando la ulidad **localectl** o modificando el archivo de configuración.
+El archivo de configuración para las distribuciones RHEL/Debian, se encuentran en las siguientes ubicaciones:
 
-<!--more-->
+- **RHEL**: /etc/locale.conf
+- **Debian/Ubuntu** /etc/default/keyboard
+
+
 
 ---
