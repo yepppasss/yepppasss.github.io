@@ -38,5 +38,14 @@ network:
       nameservers:
         addresses: [8.8.8.8,1.1.1.1]
 ```
+Una vez hecho esto, guardar y cierrar el archivo. Se aplicarán los cambios con:
+```
+sudo netplan apply
+```
+> En caso de se tenga algunos problemas, ejecutar el siguiente comando:
+> ```
+> sudo netplan --debug apply
+> ```
+
 
 ---
