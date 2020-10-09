@@ -1,7 +1,7 @@
 ---
 layout: article
-title: Ubuntu 18.04 - Cómo definir una dirección IP estática
-tags: ubuntu 18.04 IP
+title: Ubuntu - Cómo definir una dirección IP estática
+tags: ubuntu IP
 ---
 
 # Resumen
