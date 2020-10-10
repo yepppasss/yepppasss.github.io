@@ -100,6 +100,8 @@ pepe    ALL=(ALL:ALL) ALL
 ```
 
 Es importante conocer que los permisos tienen la siguiente correspondencia:
+{:.success}
+
 * user **ALL**=(ALL:ALL) ALL: en este se indica que la regla se aplica a cualquier anfitrión (o *host*).
 * user ALL=(**ALL**:ALL) ALL: "user" podrá usar comandos de cualquier usuario.
 * user ALL=(ALL:**ALL**) ALL: si el anterior "ALL" permitía usar comandos de usuarios, éste lo hará de grupos.
@@ -113,8 +115,7 @@ pepe  ALL=(ALL) NOPASSWD:ALL
 ```
 > Se recomienda utilizar el editor *VIM*. Para guardar el archivo, se requerirá utilizar `:wq!`
 
-Success Text.
-{:.success}
+
 
 
 ---
