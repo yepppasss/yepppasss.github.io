@@ -1,6 +1,6 @@
 ---
 layout: article
-title: [Linux] Establecer comunicación SSH para sesión sin contraseña
+title: Establecer comunicación SSH para sesión sin contraseña
 tags: linux ssh
 ---
 
