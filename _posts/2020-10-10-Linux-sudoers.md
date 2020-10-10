@@ -99,12 +99,13 @@ Deberemos añadir en la última línea el usuario al que deseamos asignar los pe
 pepe    ALL=(ALL:ALL) ALL
 ```
 
-Es importante conocer que los permisos tienen la siguiente correspondencia:  
-* user **ALL**=(ALL:ALL) ALL: en este se indica que la regla se aplica a cualquier anfitrión (o *host*). 
-* user ALL=(**ALL**:ALL) ALL: "user" podrá usar comandos de cualquier usuario. 
-* user ALL=(ALL:**ALL**) ALL: si el anterior "ALL" permitía usar comandos de usuarios, éste lo hará de grupos. 
-* user ALL=(ALL:ALL) **ALL**: las reglas se aplican a todos los comandos.
-{:.success}
+Es importante conocer que los permisos tienen la siguiente correspondencia:
+{:.warning}
+> * user **ALL**=(ALL:ALL) ALL: en este se indica que la regla se aplica a cualquier anfitrión (o *host*). 
+> * user ALL=(**ALL**:ALL) ALL: "user" podrá usar comandos de cualquier usuario. 
+> * user ALL=(ALL:**ALL**) ALL: si el anterior "ALL" permitía usar comandos de usuarios, éste lo hará de grupos. 
+> * user ALL=(ALL:ALL) **ALL**: las reglas se aplican a todos los comandos.
+
 
 # Acceso sin contraseña a sudo
 Para poder acceder sin tener que introducir la contraseña, se deberá modificar la entrada anterior archivo sudo y asignar:
