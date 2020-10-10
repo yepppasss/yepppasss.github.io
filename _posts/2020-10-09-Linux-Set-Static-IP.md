@@ -51,7 +51,7 @@ sudo netplan apply
 
 # CentOS/RHEL
 
-En la versión 8 de CentOS/RHEL, se incluye la herramienta **NetworkManager**, que permite una administración a partir de ésta herramienta.
+En la versión 7 de CentOS/RHEL, se introduce la herramienta **NetworkManager**, que permite una administración a partir de ésta herramienta.
 Para las versiones previas, el método utilizado, es través de la configuración de un archivo de configuración.
 A continuación vamos a ver las diversas formas de configuración:
 
@@ -115,7 +115,10 @@ Para guardar las modificaciones que hemos realizado, utilizaremos el siguiente c
 save
 ```
 Para salir de la Shell, utilizaremos el comando `quit`.
-Para que tengan efecto los cambios, será necesario recargar la conexión.
+Para que tengan efecto los cambios, será necesario recargar la conexión que podemos realizar con el siguiente comando:
+```
+sudo nmcli connection down ens35 && sudo nmcli connection up ens35
+```
 
 
 
