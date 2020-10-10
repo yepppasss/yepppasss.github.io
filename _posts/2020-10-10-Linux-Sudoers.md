@@ -111,7 +111,7 @@ Para poder acceder sin tener que introducir la contraseña, se deberá modificar
 # Allow members of group sudo to execute any command
 %sudo  ALL=(ALL:ALL) ALL NOPASSWD:ALL
 ```
-
+> Se recomienda utilizar el editor *VIM*. Para guardar el archivo, se requerirá utilizar `:wq!`
 
 
 
