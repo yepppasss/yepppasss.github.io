@@ -55,6 +55,68 @@ En la versión 7 de CentOS/RHEL, se introduce la herramienta **NetworkManager**,
 Para las versiones previas, el método utilizado, es través de la configuración de un archivo de configuración.
 A continuación vamos a ver las diversas formas de configuración:
 
+## Manual de archivo de configuración
+
+Para cada interfaz de red administrada por el demonio NetworkManager, se crea un archivo de configuración dentro del directorio **/etc/sysconfig/network-scripts**.
+El nombre del archivo está compuesto por el prefijo **ifcfg-** más el nombre de la interfaz. Si inspeccionamos el archivo relacionado con nuestra NIC, podemos ver su configuración real:
+
+```
+cat /etc/sysconfig/network-scrIPts/ifcfg-ens33
+TYPE="Ethernet"
+PROXY_METHOD="none"
+BROWSER_ONLY="no"
+BOOTPROTO="dhcp"
+DEFROUTE="yes"
+IPV4_FAILURE_FATAL="no"
+IPV6INIT="yes"
+IPV6_AUTOCONF="yes"
+IPV6_DEFROUTE="yes"
+IPV6_FAILURE_FATAL="no"
+IPV6_ADDR_GEN_MODE="stable-privacy"
+NAME="ens33"
+UUID="d5f41bf4-de0a-43b3-b633-7e2ec6212e58"
+DEVICE="ens33"
+ONBOOT="yes"
+```
+La opción **BOOTPROTO** se establece en **dhcp:** la opción establece el protocolo que se utilizará en el arranque para establecer la dirección IP de la interfaz. Las posibles opciones a utilizar son:
+
+* **none** : No se utiliza ningún protocolo.
+* **bootp** : Usa el protocolo bootp.
+* **dhcp** : Utiliza el protocolo dhcp
+
+Como queremos establecer una dirección IPv4 estática, deberemos cambiar el valor de **BOOTPROTO** a **none** y configurar nuestra IP, prefijo de ruta, puerta de enlace y servidor dns de forma estática. 
+Podemos lograr esto usando respectivamente las opciones **IPADDR**, **PREFIX**, **GATEWAY** y **DNS**. 
+Dado que se pueden especificar muchos servidores dns, la opción DNS debe informarse junto con un número progresivo, comenzando desde 1. 
+Después de las modificaciones necesarias, nuestro archivo debería verse así:
+```
+TYPE="Ethernet"
+PROXY_METHOD="none"
+BROWSER_ONLY="no"
+BOOTPROTO="none"
+DEFROUTE="yes"
+IPV4_FAILURE_FATAL="no"
+IPV6INIT="yes"
+IPV6_AUTOCONF="yes"
+IPV6_DEFROUTE="yes"
+IPV6_FAILURE_FATAL="no"
+IPV6_ADDR_GEN_MODE="stable-privacy"
+NAME="ens33"
+UUID="d5f41bf4-de0a-43b3-b633-7e2ec6212e58"
+DEVICE="ens33"
+ONBOOT="yes"
+IPADDR=192.168.20.2
+PREFIX=24
+GATEWAY=192.168.20.1
+DNS1=192.168.20.1
+```
+
+Configuramos nuestra IP estática en **192.168.20.2** y configuramos nuestra puerta de enlace y el servidor dns en **192.168.20.1**. 
+Ahora, para que nuestros cambios sean efectivos, debemos desactivar y volver a activar la interfaz de red. 
+Tenga en cuenta que esto interrumpirá las conexiones ssh existentes a través de dicha interfaz:
+```
+sudo nmcli connection down ens33 && sudo nmcli connection up ens33
+```
+
 ## NetworkManager
 
 Esta herramienta dispone de dos versiones para su administración:
