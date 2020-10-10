@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Ubuntu - Cómo definir una dirección IP estática
+title: [Ubuntu] Cómo definir una dirección IP estática
 tags: ubuntu IP
 ---
 
