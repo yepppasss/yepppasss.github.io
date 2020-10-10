@@ -106,10 +106,10 @@ pepe    ALL=(ALL:ALL) ALL
 > * user ALL=(ALL:ALL) **ALL**: las reglas se aplican a todos los comandos.
 
 # Acceso sin contraseña a sudo
-Para poder acceder sin tener que introducir la contraseña, se deberá modificar la siguiente configuración del archivo sudo:
+Para poder acceder sin tener que introducir la contraseña, se deberá modificar la entrada anterior archivo sudo y asignar:
 ```
 # Allow members of group sudo to execute any command
-%sudo  ALL=(ALL:ALL) ALL NOPASSWD:ALL
+pepe  ALL=(ALL) NOPASSWD:ALL
 ```
 > Se recomienda utilizar el editor *VIM*. Para guardar el archivo, se requerirá utilizar `:wq!`
 
