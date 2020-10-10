@@ -1,10 +1,12 @@
 ---
 layout: article
 title: Cómo definir una dirección IP estática
-tags: ubuntu IP
+tags: ubuntu centos RHEL linux IP
 ---
 
 # Resumen
+
+# Ubuntu
 
 Ya en la versión de Ubuntu 18.04 se inicia la implementación de la herramienta Netplan, que nos permite mediante un archivo YAML, aplicar la configuración de red.
 Esta herramienta sustituye al viejo archivo de configuración **/etc/network/interfaces**
@@ -46,6 +48,38 @@ sudo netplan apply
 > ```
 > sudo netplan --debug apply
 > ```
+
+# CentOS/RHEL
+
+En la versión 8 de CentOS/RHEL, se incluye la herramienta **NetworkManager**, que permite una administración a partir de ésta herramienta.
+Para las versiones previas, el método utilizado, es través de la configuración de un archivo de configuración.
+A continuación vamos a ver las diversas formas de configuración:
+
+## NetworkManager
+
+Esta herramienta dispone de dos versiones para su administración:
+
+* **nmcli**: versión CLI.
+* **nmtui**: versión con GUI en CLI.
+
+### Utilizando el nmcli
+
+Para cambiar la dirección IP de la interfaz **ens33** con un comando nmcli directo, ejecutamos:
+```
+sudo nmcli connection modify ens33 IPv4.address 192.168.20.2/24
+```
+Usaremos una sintaxis similar para cambiar la puerta de enlace y la configuración de dns:
+```
+sudo nmcli connection modify ens33 IPv4.gateway 192.168.20.1
+sudo nmcli connection modify ens33 IPv4.dns 192.168.20.1
+```
+Finalmente, configuramos el método en **manual** para evitar usar cualquier otro protocolo de arranque para la interfaz. 
+Este comando establece la opción *BOOTPROTO* en **none** en el archivo de configuración de la interfaz:
+```
+sudo nmcli connection modify ens33 IPv4.method manual
+```
+
+
 
 
 ---
