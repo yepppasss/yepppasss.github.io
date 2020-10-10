@@ -104,7 +104,6 @@ Es importante conocer que los permisos tienen la siguiente correspondencia:
 * user ALL=(**ALL**:ALL) ALL: "user" podrá usar comandos de cualquier usuario.
 * user ALL=(ALL:**ALL**) ALL: si el anterior "ALL" permitía usar comandos de usuarios, éste lo hará de grupos.
 * user ALL=(ALL:ALL) **ALL**: las reglas se aplican a todos los comandos.
-{:.info}
 
 # Acceso sin contraseña a sudo
 Para poder acceder sin tener que introducir la contraseña, se deberá modificar la entrada anterior archivo sudo y asignar:
@@ -114,7 +113,8 @@ pepe  ALL=(ALL) NOPASSWD:ALL
 ```
 > Se recomienda utilizar el editor *VIM*. Para guardar el archivo, se requerirá utilizar `:wq!`
 
-
+Success Text.
+{:.success}
 
 
 ---
