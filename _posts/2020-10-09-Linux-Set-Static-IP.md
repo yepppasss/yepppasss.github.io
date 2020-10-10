@@ -62,7 +62,7 @@ Esta herramienta dispone de dos versiones para su administración:
 * **nmcli**: versión CLI.
 * **nmtui**: versión con GUI en CLI.
 
-### Utilizando el nmcli
+### Utilizando el nmcli (directamente)
 
 Para cambiar la dirección IP de la interfaz **ens33** con un comando nmcli directo, ejecutamos:
 ```
@@ -78,7 +78,24 @@ Este comando establece la opción *BOOTPROTO* en **none** en el archivo de confi
 ```
 sudo nmcli connection modify ens33 IPv4.method manual
 ```
+### Utilizando el nmcli (shell)
+También disponemos de la posibilidad de realizar la configuración mediante un método interactivo, para realizar los cambios.
+Para ello, ingresaremos en la shell:
+```
+sudo nmcli connection edit ens35
+```
+Nos aparecerá el siguiente mensaje de acceso al shell:
+```
+===| Editor de conexión interactivo de nmcli |===
 
+Modificando la conexión «802-3-ethernet» existente: «ens35»
+
+Escriba «help» o «?» para comandos disponibles.
+Escriba «print» para mostrar todas las propiedades de conexión.
+Escriba «describe [<parámetro>.<prop>]» para una descripción de propiedad detallada.
+
+Puede modificar los siguientes parámetros: connection, 802-3-ethernet (ethernet), 802-1x, dcb, sriov, ethtool, match, ipv4, ipv6, tc, proxy
+```
 
 
 
