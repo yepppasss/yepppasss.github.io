@@ -96,6 +96,26 @@ Escriba «describe [<parámetro>.<prop>]» para una descripción de propiedad de
 
 Puede modificar los siguientes parámetros: connection, 802-3-ethernet (ethernet), 802-1x, dcb, sriov, ethtool, match, ipv4, ipv6, tc, proxy
 ```
+Para cambiar la dirección de nuestra interfaz:
+```
+set IPv4.address 192.168.20.2/24
+```
+Nos indicará si deseamos establecer el **ipv4.method** a manual y le indicaremos que si:
+```
+¿Desea también establecer «ipv4.method» a «manual»? [yes]: yes
+```
+Para cambiar las otras propiedades:
+```
+set IPv4.gateway 192.168.20.1
+set IPv4.dns 192.168.20.1
+set IPv4.method manual
+```
+Para guardar las modificaciones que hemos realizado, utilizaremos el siguiente comando:
+```
+save
+```
+Para salir de la Shell, utilizaremos el comando `quit`.
+Para que tengan efecto los cambios, será necesario recargar la conexión.
 
 
 
