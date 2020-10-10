@@ -125,8 +125,7 @@ Además de cambiar los parámetros de una interfaz de red modificando su archivo
 sudo nmtui
 ```
 Esto nos abrirá una ventana en el terminal como la siguiente:
-![Image](/_image/2020-10-09-Linux-Set-Static-IP - 001.png){:.border}
-
+![Image](https://raw.githubusercontent.com/yepppasss/yepppasss.github.io/master/_images/2020-10-09-Linux-Set-Static-IP%20-%20001.png){:.border}
 
 Desde esta interfaz nos podremos mover en el menu para poder configurar las interfaces de red.
 
