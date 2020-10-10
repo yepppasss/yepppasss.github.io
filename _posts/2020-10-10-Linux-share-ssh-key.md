@@ -43,3 +43,4 @@ cat .ssh/id_rsa.pub
 ```
 Con esto nos aseguramos que dispone de la misma *key*, ya podemos conectar al servidor remoto sin uso de contraseña.
 
+---
