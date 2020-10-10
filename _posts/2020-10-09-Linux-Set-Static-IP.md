@@ -119,7 +119,16 @@ Para que tengan efecto los cambios, será necesario recargar la conexión que po
 ```
 sudo nmcli connection down ens35 && sudo nmcli connection up ens35
 ```
+### Utilizando el nmtui
+Además de cambiar los parámetros de una interfaz de red modificando su archivo manualmente o usando la utilidad nmcli, también podemos controlar NetworkManager usando una interfaz de usuario de texto. Para lanzarlo simplemente invocamos `nmtui` en nuestro terminal:
+```
+sudo nmtui
+```
+Esto nos abrirá una ventana en el terminal como la siguiente:
+![Image](_image/2020-10-09-Linux-Set-Static-IP - 001.png){:.border}
 
+
+Desde esta interfaz nos podremos mover en el menu para poder configurar las interfaces de red.
 
 
 ---
