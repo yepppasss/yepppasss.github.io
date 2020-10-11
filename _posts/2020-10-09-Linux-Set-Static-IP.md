@@ -107,7 +107,7 @@ ONBOOT="yes"
 IPADDR=192.168.20.2
 PREFIX=24
 GATEWAY=192.168.20.1
-DNS1=192.168.20.1
+DNS1=8.8.8.8
 ```
 
 Configuramos nuestra IP estática en **192.168.20.2** y configuramos nuestra puerta de enlace y el servidor dns en **192.168.20.1**. 
@@ -133,7 +133,7 @@ sudo nmcli connection modify ens33 IPv4.address 192.168.20.2/24
 Usaremos una sintaxis similar para cambiar la puerta de enlace y la configuración de dns:
 ```
 sudo nmcli connection modify ens33 IPv4.gateway 192.168.20.1
-sudo nmcli connection modify ens33 IPv4.dns 192.168.20.1
+sudo nmcli connection modify ens33 IPv4.dns 8.8.8.8
 ```
 Finalmente, configuramos el método en **manual** para evitar usar cualquier otro protocolo de arranque para la interfaz. 
 Este comando establece la opción *BOOTPROTO* en **none** en el archivo de configuración de la interfaz:
@@ -169,7 +169,7 @@ Nos indicará si deseamos establecer el **ipv4.method** a manual y le indicaremo
 Para cambiar las otras propiedades:
 ```
 set IPv4.gateway 192.168.20.1
-set IPv4.dns 192.168.20.1
+set IPv4.dns 8.8.8.8
 set IPv4.method manual
 ```
 Para guardar las modificaciones que hemos realizado, utilizaremos el siguiente comando:
