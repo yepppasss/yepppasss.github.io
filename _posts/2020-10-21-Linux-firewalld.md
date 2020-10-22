@@ -182,9 +182,52 @@ sudo firewall-cmd --set-default-zone=home
 ```
 success
 ```
+# Establecer reglas para sus aplicaciones
+La forma básica de definir las excepciones de firewall para los servicios que desea que estén disponibles es fácil. 
+Repasaremos la idea básica aquí.
 
+## Agregar un servicio a sus zonas
+El método más sencillo es agregar los servicios o puertos que necesita a las zonas que está utilizando. 
+Nuevamente, puede obtener una lista de los servicios disponibles con la opción `--get-services`:
+```
+sudo firewall-cmd --get-services
+```
+```
+RH-Satellite-6 amanda-client amanda-k5-client amqp amqps apcupsd audit bacula bacula-client bb bgp bitcoin bitcoin-rpc bitcoin-testnet bitcoin-testnet-rpc bittorrent-lsd ceph ceph-mon cfengine cockpit condor-collector ctdb dhcp dhcpv6 dhcpv6-client distcc dns dns-over-tls docker-registry docker-swarm dropbox-lansync elasticsearch etcd-client etcd-server finger freeipa-4 freeipa-ldap freeipa-ldaps freeipa-replication freeipa-trust ftp ganglia-client ganglia-master git grafana gre high-availability http https imap imaps ipp ipp-client ipsec irc ircs iscsi-target isns jenkins kadmin kdeconnect kerberos kibana klogin kpasswd kprop kshell ldap ldaps libvirt libvirt-tls lightning-network llmnr managesieve matrix mdns memcache minidlna mongodb mosh mountd mqtt mqtt-tls ms-wbt mssql murmur mysql nfs nfs3 nmea-0183 nrpe ntp nut openvpn ovirt-imageio ovirt-storageconsole ovirt-vmconsole plex pmcd pmproxy pmwebapi pmwebapis pop3 pop3s postgresql privoxy prometheus proxy-dhcp ptp pulseaudio puppetmaster quassel radius rdp redis redis-sentinel rpc-bind rsh rsyncd rtsp salt-master samba samba-client samba-dc sane sip sips slp smtp smtp-submission smtps snmp snmptrap spideroak-lansync spotify-sync squid ssdp ssh steam-streaming svdrp svn syncthing syncthing-gui synergy syslog syslog-tls telnet tentacle tftp tftp-client tile38 tinc tor-socks transmission-client upnp-client vdsm vnc-server wbem-http wbem-https wsman wsmans xdmcp xmpp-bosh xmpp-client xmpp-local xmpp-server zabbix-agent zabbix-server
+```
+> **NOTA**
+> Puede obtener más detalles sobre cada uno de estos servicios mirando su archivo **.xml** asociado dentro del directorio `/usr/lib/firewalld/services`. 
+> Por ejemplo, el servicio SSH se define así:
+> ```
+> <?xml version="1.0" encoding="utf-8"?>
+> <service>
+>   <short>SSH</short>
+>   <description>Secure Shell (SSH) is a protocol for logging into and executing commands on remote machines. It provides secure encrypted communications. If you plan on accessing your machine remotely via SSH over a firewalled interface, enable this option. You need the openssh-server package installed for this option to be useful.</description>
+>   <port protocol="tcp" port="22"/>
+> </service>
+> ```
+> Puede habilitar un servicio para una zona usando el parámetro `--add-service=`. 
+> La operación apuntará a la zona predeterminada o cualquier zona especificada por el parámetro `--zone=`. 
+> De forma predeterminada, esto solo ajustará la sesión de firewall actual. 
+> Puede ajustar la configuración del firewall permanente incluyendo la marca `--permanent`.
 
-
+Por ejemplo, si estamos ejecutando un servidor web que sirve tráfico HTTP convencional, podemos permitir este tráfico para las interfaces en nuestra zona "publoc" para esta sesión escribiendo:
+```
+sudo firewall-cmd --zone=public --add-service=http
+```
+```
+success
+```
+Puede omitir la `--zone=` si desea modificar la zona predeterminada. 
+Podemos verificar que la operación fue exitosa usando las operaciones `--list-all` o `--list-services`:
+```
+sudo firewall-cmd --zone=public --list-services
+```
+```
+cockpit dhcpv6-client http ssh
+```
+Una vez que haya probado que todo funciona como debería, probablemente querrá modificar las reglas de firewall permanente para que su servicio aún esté disponible después de reiniciar. 
+Podemos hacer que nuestro cambio de zona "publico" sea permanente escribiendo:
 
 
 
