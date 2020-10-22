@@ -46,7 +46,7 @@ export HTTPS_PROXY=user:pass@my.proxy.server:8081
 ```
 * Estableceremos y exportaremos la variable NO_PROXY para evitar que se envíe tráfico local al proxy.
 ```
-xport NO_PROXY=localhost,127.0.0.1,*.my.lan.domain
+export NO_PROXY=localhost,127.0.0.1,*.my.lan.domain
 ```
 # Configuración de proxy persistente para un único usuario
 
