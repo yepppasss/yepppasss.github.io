@@ -164,6 +164,7 @@ success
 > **NOTA**
 > Siempre que realice la transición de una interfaz a una nueva zona, tenga en cuenta que probablemente esté modificando los servicios que estarán operativos. 
 > Por ejemplo, aquí nos estamos moviendo a la zona "home", que tiene SSH disponible. Esto significa que nuestra conexión no debería caer. Algunas otras zonas no tienen SSH habilitado de forma predeterminada y si su conexión se interrumpe mientras usa una de estas zonas, es posible que no pueda volver a iniciar sesión.
+
 Podemos verificar que esto fue exitoso preguntando nuevamente por las zonas activas:
 ```
 sudo firewall-cmd --get-active-zones
@@ -172,7 +173,6 @@ sudo firewall-cmd --get-active-zones
 home
   interfaces: ens33
 ```
-
 ## Ajuste de la zona predeterminada
 Si todas sus interfaces pueden manejarse mejor en una sola zona, probablemente sea más fácil seleccionar la mejor zona predeterminada y luego usarla para su configuración. 
 Puede cambiar la zona predeterminada con el parámetro `--set-default-zone=`. 
