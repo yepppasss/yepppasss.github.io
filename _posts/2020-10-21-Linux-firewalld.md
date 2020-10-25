@@ -228,8 +228,120 @@ cockpit dhcpv6-client http ssh
 ```
 Una vez que haya probado que todo funciona como debería, probablemente querrá modificar las reglas de firewall permanente para que su servicio aún esté disponible después de reiniciar. 
 Podemos hacer que nuestro cambio de zona "publico" sea permanente escribiendo:
+```
+sudo firewall-cmd --zone=public --permanent --add-service=http
+```
+```
+success
+```
+Puede verificar que esto fue exitoso agregando la marca `--permanent` a la operación `--list-services`. 
+Necesita usar sudo para cualquier operación permanente:
+```
+sudo firewall-cmd --zone=public --permanent --list-services
+```
+```
+cockpit dhcpv6-client http ssh
+```
+Su zona "public" ahora permitirá el tráfico web HTTP en el puerto 80. 
+Si su servidor web está configurado para usar SSL/TLS, también querrá agregar el servicio https. 
+Podemos agregar eso a la sesión actual y al conjunto de reglas permanente escribiendo:
+```
+sudo firewall-cmd --zone=public --add-service=https
+sudo firewall-cmd --zone=public --permanent --add-service=https
+```
+```
+cockpit dhcpv6-client http ssh
+```
+## ¿Qué sucede si no se dispone de un servicio adecuado?
+Los servicios de firewall que se incluyen con la instalación de firewalld representan muchos de los requisitos más comunes para las aplicaciones a las que quizás desee permitir el acceso. 
+Sin embargo, es probable que haya situaciones en las que estos servicios no se ajusten a sus requisitos. 
+En esta situación, tiene dos opciones.
 
+### Abrir un puerto para sus zonas
+La forma más fácil de agregar soporte para su aplicación específica es abrir los puertos que usa en las zonas apropiadas. 
+Esto es tan fácil como especificar el puerto o rango de puertos, y el protocolo asociado para los puertos que necesita abrir. 
 
+Por ejemplo, si nuestra aplicación se ejecuta en el puerto *5000* y usa *TCP*, podríamos agregar esto a la zona "public" para esta sesión usando el parámetro `--add-port=`. 
+Los protocolos pueden ser *tcp* o *udp*:
+```
+sudo firewall-cmd --zone=public --add-port=5000/tcp
+```
+```
+success
+```
+Podemos verificar que esto fue exitoso usando la operación `--list-ports`:
+```
+sudo firewall-cmd --zone=public --list-ports
+```
+```
+5000/tcp
+```
+También es posible especificar un rango secuencial de puertos separando el puerto inicial y final en el rango con un guión. 
+Por ejemplo, si nuestra aplicación usa los puertos UDP *4990* a *4999*, podríamos abrirlos en "public" escribiendo:
+```
+sudo firewall-cmd --zone=public --add-port=4990-4999/udp
+```
+```
+success
+```
+Después de la prueba, es probable que deseemos agregarlos al firewall permanente. 
+Puede hacerlo escribiendo:
+```
+sudo firewall-cmd --zone=public --permanent --add-port=5000/tcp
+sudo firewall-cmd --zone=public --permanent --add-port=4990-4999/udp
+sudo firewall-cmd --zone=public --permanent --list-ports
+```
+```
+success
+success
+5000/tcp 4990-4999/udp
+```
+## Definición de un servicio
+Abrir puertos para sus zonas es fácil, pero puede ser difícil hacer un seguimiento de para qué sirve cada uno. 
+Si alguna vez da de baja un servicio en su servidor, es posible que tenga dificultades para recordar qué puertos que se han abierto todavía son necesarios. 
+Para evitar esta situación, es posible definir un servicio. 
+
+Los servicios son simplemente colecciones de puertos con un nombre y una descripción asociados. 
+El uso de servicios es más fácil de administrar que los puertos, pero requiere un poco de trabajo inicial. 
+La forma más fácil de comenzar es copiar un script existente (que se encuentra en `/usr/lib/firewalld/services`) al directorio `/etc/firewalld/services` donde el firewall busca definiciones no estándar. 
+Por ejemplo, podríamos copiar la definición de servicio SSH para usarla en nuestra definición de servicio de "example" como esta. 
+El nombre del archivo menos el sufijo .xml dictará el nombre del servicio dentro de la lista de servicios del firewall:
+```
+sudo cp /usr/lib/firewalld/services/ssh.xml /etc/firewalld/services/example.xml
+```
+Ahora, puede ajustar la definición que se encuentra en el archivo que copió:
+```
+sudo vim /etc/firewalld/services/example.xml
+```
+Para comenzar, el archivo contendrá la definición SSH que copió:
+```
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>SSH</short>
+  <description>Secure Shell (SSH) is a protocol for logging into and executing commands on remote machines. It provides secure encrypted communications. If you plan on accessing your machine remotely via SSH over a firewalled interface, enable this option. You need the openssh-server package installed for this option to be useful.</description>
+  <port protocol="tcp" port="22"/>
+</service>
+```
+La mayor parte de esta definición son en realidad metadatos. 
+Querrá cambiar el nombre corto del servicio dentro de las etiquetas `<short>`. 
+Este es un nombre legible por humanos para su servicio. 
+También debe agregar una descripción para tener más información si alguna vez necesita auditar el servicio. 
+La única configuración que necesita hacer que realmente afecte la funcionalidad del servicio probablemente será la definición de puerto donde identifica el número de puerto y el protocolo que desea abrir. 
+Esto se puede especificar varias veces.
+
+Para nuestro servicio de "example", imagine que necesitamos abrir el puerto *7777* para *TCP* y *8888* para *UDP*. 
+Al ingresar al modo INSERT presionando **i**, podemos modificar la definición existente con algo como esto:
+```
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Example Service</short>
+  <description>This is just an example service.  It probably shouldn't be used on a real system.</description>
+  <port protocol="tcp" port="7777"/>
+  <port protocol="udp" port="8888"/>
+</service>
+```
+Presione *ESC*, luego ingrese: **x** para guardar y cerrar el archivo. 
+Vuelva a cargar su firewall para acceder a su nuevo servicio:
 
 
 
