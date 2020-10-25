@@ -342,10 +342,116 @@ Al ingresar al modo INSERT presionando **i**, podemos modificar la definición e
 ```
 Presione *ESC*, luego ingrese: **x** para guardar y cerrar el archivo. 
 Vuelva a cargar su firewall para acceder a su nuevo servicio:
+```
+sudo firewall-cmd --reload
+```
+Puedes ver que ahora está entre la lista de servicios disponibles:
+```
+firewall-cmd --get-services
+```
+```
+RH-Satellite-6 amanda-client amanda-k5-client amqp amqps apcupsd audit bacula bacula-client bb bgp bitcoin bitcoin-rpc bitcoin-testnet bitcoin-testnet-rpc bittorrent-lsd ceph ceph-mon cfengine cockpit condor-collector ctdb dhcp dhcpv6 dhcpv6-client distcc dns dns-over-tls docker-registry docker-swarm dropbox-lansync elasticsearch etcd-client etcd-server example finger freeipa-4 freeipa-ldap freeipa-ldaps freeipa-replication freeipa-trust ftp ganglia-client ganglia-master git grafana gre high-availability http https imap imaps ipp ipp-client ipsec irc ircs iscsi-target isns jenkins kadmin kdeconnect kerberos kibana klogin kpasswd kprop kshell ldap ldaps libvirt libvirt-tls lightning-network llmnr managesieve matrix mdns memcache minidlna mongodb mosh mountd mqtt mqtt-tls ms-wbt mssql murmur mysql nfs nfs3 nmea-0183 nrpe ntp nut openvpn ovirt-imageio ovirt-storageconsole ovirt-vmconsole plex pmcd pmproxy pmwebapi pmwebapis pop3 pop3s postgresql privoxy prometheus proxy-dhcp ptp pulseaudio puppetmaster quassel radius rdp redis redis-sentinel rpc-bind rsh rsyncd rtsp salt-master samba samba-client samba-dc sane sip sips slp smtp smtp-submission smtps snmp snmptrap spideroak-lansync spotify-sync squid ssdp ssh steam-streaming svdrp svn syncthing syncthing-gui synergy syslog syslog-tls telnet tentacle tftp tftp-client tile38 tinc tor-socks transmission-client upnp-client vdsm vnc-server wbem-http wbem-https wsman wsmans xdmcp xmpp-bosh xmpp-client xmpp-local xmpp-server zabbix-agent zabbix-server
+```
+Ahora puede utilizar este servicio en sus zonas como lo haría normalmente.
 
+# Creación de sus propias zonas
 
+Si bien las zonas predefinidas probablemente serán más que suficientes para la mayoría de los usuarios, puede ser útil definir sus propias zonas que sean más descriptivas de su función. 
 
+Por ejemplo, es posible que desee crear una zona para su servidor web, denominada "publicweb". 
+Sin embargo, es posible que desee configurar otra zona para el servicio DNS que proporciona en su red privada. 
+Es posible que desee una zona llamada "privateDNS" para eso. 
 
-
+Al agregar una zona, debe agregarla a la configuración del firewall permanente. 
+A continuación, puede volver a cargar para llevar la configuración a su sesión en ejecución. 
+Por ejemplo, podríamos crear las dos zonas que discutimos anteriormente escribiendo:
+```
+sudo firewall-cmd --permanent --new-zone=publicweb
+sudo firewall-cmd --permanent --new-zone=privateDNS
+```
+Puede verificar que estos están presentes en su configuración permanente escribiendo:
+```
+sudo firewall-cmd --permanent --get-zones
+```
+```
+block dmz drop external home internal privateDNS public publicweb trusted work
+```
+Como se indicó anteriormente, estos aún no estarán disponibles en la instancia actual del firewall:
+```
+sudo firewall-cmd --reload
+firewall-cmd --get-zones
+```
+```
+block dmz drop external home internal privateDNS public publicweb trusted work
+```
+Ahora, puede comenzar a asignar los servicios y puertos adecuados a sus zonas. 
+Por lo general, es una buena idea ajustar la instancia activa y luego transferir esos cambios a la configuración permanente después de la prueba. 
+Por ejemplo, para la zona "publicweb", es posible que desee agregar los servicios SSH, HTTP y HTTPS:
+```
+sudo firewall-cmd --zone=publicweb --add-service=ssh
+sudo firewall-cmd --zone=publicweb --add-service=http
+sudo firewall-cmd --zone=publicweb --add-service=https
+sudo firewall-cmd --zone=publicweb --list-all
+```
+Asimismo, podemos agregar el servicio DNS a nuestra zona "privateDNS":
+```
+sudo firewall-cmd --zone=privateDNS --add-service=dns
+sudo firewall-cmd --zone=privateDNS --list-all
+```
+```
+privateDNS
+  target: default
+  icmp-block-inversion: no
+  interfaces: 
+  sources: 
+  services: dns
+  ports: 
+  protocols: 
+  masquerade: no
+  forward-ports: 
+  source-ports: 
+  icmp-blocks: 
+  rich rules: 
+```
+Luego podríamos cambiar nuestras interfaces a estas nuevas zonas para probarlas:
+```
+sudo firewall-cmd --zone=publicweb --change-interface=ens33
+```
+En este punto, tiene la oportunidad de probar su configuración. 
+Si estos valores funcionan para usted, querrá agregar las mismas reglas a la configuración permanente. 
+Puede hacerlo volviendo a aplicar las reglas con la bandera `--permanent`:
+```
+sudo firewall-cmd --zone=publicweb --permanent --add-service=ssh
+sudo firewall-cmd --zone=publicweb --permanent --add-service=http
+sudo firewall-cmd --zone=publicweb --permanent --add-service=https
+sudo firewall-cmd --zone=privateDNS --permanent --add-service=dns
+``` 
+Después de aplicar permanentemente estas reglas, puede reiniciar su red y volver a cargar su servicio de firewall:
+```
+sudo systemctl restart network
+sudo systemctl reload firewalld
+```
+```
+publicweb
+  interfaces: ens33
+```
+Y valide que los servicios apropiados estén disponibles para ambas zonas:
+```
+sudo firewall-cmd --zone=publicweb --list-services
+```
+```
+http https ssh
+```
+```
+sudo firewall-cmd --zone=privateDNS --list-services
+```
+```
+dns
+```
+Con esto se habrá configurado con éxito sus propias zonas. 
+Si desea que una de estas zonas sea la predeterminada para otras interfaces, recuerde configurar ese comportamiento con el parámetro `--set-default-zone=`:
+```
+sudo firewall-cmd --set-default-zone=publicweb
+```
 
 ---
