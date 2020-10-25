@@ -172,6 +172,7 @@ sudo firewall-cmd --get-active-zones
 home
   interfaces: ens33
 ```
+
 ## Ajuste de la zona predeterminada
 Si todas sus interfaces pueden manejarse mejor en una sola zona, probablemente sea más fácil seleccionar la mejor zona predeterminada y luego usarla para su configuración. 
 Puede cambiar la zona predeterminada con el parámetro `--set-default-zone=`. 
