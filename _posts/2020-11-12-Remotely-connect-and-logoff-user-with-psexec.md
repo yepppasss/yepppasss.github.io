@@ -37,8 +37,11 @@ Una vez accedido al servidor, ejecutaremos el siguiente comando para obtener las
 La ID de la sesión que deseamos cerrar la sesión es 2. 
 
 Para hacer eso, ejecutamos este comando:
+
 `logoff 2`
+
 Con esto ya hemos cerrado la sesión activa deseada.
+
 `query session`
 ```
  NOMBRE DE SESIαN  NOMBRE DE USUARIO        ID  ESTADO    TIPO   DISPOSITIVO
