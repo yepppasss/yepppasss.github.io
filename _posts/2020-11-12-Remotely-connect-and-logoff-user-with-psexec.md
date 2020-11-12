@@ -48,5 +48,4 @@ Con esto ya hemos cerrado la sesión activa deseada.
  NOMBRE DE SESIαN  NOMBRE DE USUARIO        ID  ESTADO    TIPO   DISPOSITIVO
 >services                                    0  Desc
  console           Administrador             1  Activo
-                                             2  Desc
 ```
