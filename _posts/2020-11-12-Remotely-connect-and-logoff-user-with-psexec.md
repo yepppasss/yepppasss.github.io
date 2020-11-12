@@ -18,6 +18,7 @@ Por ello, lo primero que haremos se realizar la descarga de la suite y almacenar
 Una vez disponible el **psexec.exe**, procederemos a conectar al servidor deseado a través del siguiente comando:
 
 `psexec.exe \\<nombre-servidor> -u <username> -p <password> cmd`
+
 Donde:
 
 - **nombre-servidor**: servidor al que intentamos acceder (puede ser por IP, nombre NETBIOS o nombre FQDN).
