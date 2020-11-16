@@ -17,7 +17,9 @@ Por ello, lo primero que haremos se realizar la descarga de la suite y almacenar
 
 Una vez disponible el **psexec.exe**, procederemos a conectar al servidor deseado a través del siguiente comando:
 
-`psexec.exe \\<nombre-servidor> -u <username> -p <password> cmd`
+```
+psexec.exe \\<nombre-servidor> -u <username> -p <password> cmd
+```
 
 Donde:
 
@@ -28,7 +30,9 @@ Donde:
 
 Una vez accedido al servidor, ejecutaremos el siguiente comando para obtener las sesiones abiertas:
 
-`query session`
+```
+query session
+```
 ```
  NOMBRE DE SESIαN  NOMBRE DE USUARIO        ID  ESTADO    TIPO   DISPOSITIVO
 >services                                    0  Desc
@@ -39,11 +43,15 @@ La ID de la sesión que deseamos cerrar la sesión es 2.
 
 Para hacer eso, ejecutamos este comando:
 
-`logoff 2`
+```
+logoff 2
+```
 
 Con esto ya hemos cerrado la sesión activa deseada.
 
-`query session`
+```
+query session
+```
 ```
  NOMBRE DE SESIαN  NOMBRE DE USUARIO        ID  ESTADO    TIPO   DISPOSITIVO
 >services                                    0  Desc
