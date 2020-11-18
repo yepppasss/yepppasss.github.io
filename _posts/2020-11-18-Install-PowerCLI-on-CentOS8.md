@@ -45,7 +45,7 @@ Podemos listar los modulos que disponemos:
 ```
 Get-Module "VMware.*" -ListAvailable | FT -Autosize
 ```
-Generalmente para las instancias de VMware, es usual utilizar certificados SSL autofirmados. Para evitar obtener un error por ello, podremos utilizar el comando que lista a continuación
+Generalmente para las instancias de VMware, es usual utilizar certificados SSL autofirmados. Para evitar obtener un error por ello, podremos utilizar el comando que se lista a continuación
 {:.warning}
 
 ```
