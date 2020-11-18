@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Cómo instalar PowerCLI en CenOS 8
+title: Cómo instalar PowerCLI en CentOS 8
 tags: linux centos powercli
 ---
 
