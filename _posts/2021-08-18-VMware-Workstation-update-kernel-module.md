@@ -15,11 +15,19 @@ En esta entrada se describe el procedimiento para solventar el mensaje de VMware
 Para ello, lo primero que haremos será buscar si ya está instalado.
 
 ```
-apt search linux-headers-$(uname -r)
+sudo apt search linux-headers-$(uname -r)
 ```
 
 En caso de no estar instalado, ejecutaremos el siguiente comando para instalarlos:
 
 ```
-apt install linux-headers-$(uname -r)
+sudo apt install linux-headers-$(uname -r)
+```
+
+# Configuración de linux-header
+
+Para actualizar la configuración, aplicaremos el siguiente comando:
+
+```
+sudo ln -s /usr/src/linux-headers-$(uname -r)/include/generated/uapi/linux/version.h /usr/src/linux-headers-$(uname -r)/include/linux/version.h
 ```
